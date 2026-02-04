@@ -3,9 +3,21 @@ import { GameState, Scenario, ScenarioOption, MetricChange, LogEntry } from './t
 import { SCENARIOS, INITIAL_METRICS, BADGES } from './data/scenarios';
 import { MetricDisplay } from './components/MetricDisplay';
 import { ScenarioCard } from './components/ScenarioCard';
-import { Activity, RotateCcw, Award, CheckCircle2, AlertOctagon, ChevronDown, ChevronUp, History } from 'lucide-react';
+import { 
+  Activity, RotateCcw, Award, CheckCircle2, AlertOctagon, ChevronDown, ChevronUp, History,
+  ShieldCheck, Cpu, Handshake, Globe2, Scale, Layout, Heart, Zap, UserCheck, Lightbulb, Umbrella, Star, Link
+} from 'lucide-react';
 
 const MAX_TURNS = 10;
+
+// Helper to render dynamic icons based on string ID
+const BadgeIcon = ({ iconName, className }: { iconName: string; className?: string }) => {
+  const icons: Record<string, React.ElementType> = {
+    ShieldCheck, Cpu, Handshake, Globe2, Scale, Layout, Heart, Zap, UserCheck, Lightbulb, Umbrella, Star, Link
+  };
+  const IconComponent = icons[iconName] || Award;
+  return <IconComponent className={className} />;
+};
 
 const App: React.FC = () => {
   const [gameState, setGameState] = useState<GameState>({
@@ -259,7 +271,7 @@ const App: React.FC = () => {
         {/* Order 2 ensures Scenario is below metrics on mobile */}
         <div className="lg:col-span-2 order-2 pb-8">
           {gameState.isGameOver ? (
-            <div className="bg-slate-800 border border-slate-700 rounded-lg p-8 text-center animate-in zoom-in-95 duration-500">
+            <div className="bg-slate-800 border border-slate-700 rounded-lg p-6 md:p-8 text-center animate-in zoom-in-95 duration-500 shadow-2xl">
               <div className="mb-6 flex justify-center">
                  {gameState.metrics.stability > 0 && 
                   gameState.metrics.trust > 0 && 
@@ -271,29 +283,49 @@ const App: React.FC = () => {
                  )}
               </div>
               <h2 className="text-3xl font-bold text-white mb-2">Simulation Ended</h2>
-              <p className="text-slate-300 text-lg mb-8 max-w-lg mx-auto">{gameState.gameOverReason}</p>
+              <p className="text-slate-300 text-lg mb-8 max-w-lg mx-auto leading-relaxed">{gameState.gameOverReason}</p>
               
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8">
-                 {gameState.unlockedBadges.map(badgeId => {
-                    const b = BADGES.find(x => x.id === badgeId);
-                    return (
-                      <div key={badgeId} className="bg-slate-700/50 p-3 rounded flex flex-col items-center text-center">
-                        <Award className="text-yellow-400 mb-2" />
-                        <span className="text-xs font-bold">{b?.name}</span>
-                      </div>
-                    )
-                 })}
-                 {gameState.unlockedBadges.length === 0 && (
-                   <div className="col-span-full text-slate-500 italic">No badges earned this term.</div>
-                 )}
+              <div className="mb-8">
+                <h3 className="text-xl font-bold text-white mb-4 flex items-center justify-center gap-2">
+                  <Award className="text-yellow-500" /> Achievements Unlocked
+                </h3>
+                <div className="grid grid-cols-1 gap-4 text-left">
+                   {gameState.unlockedBadges.map(badgeId => {
+                      const b = BADGES.find(x => x.id === badgeId);
+                      return (
+                        <div key={badgeId} className="bg-slate-700/40 p-4 rounded-xl flex items-start space-x-4 border border-slate-600 hover:bg-slate-700/60 transition-colors">
+                          <div className="bg-slate-800 p-3 rounded-full shrink-0 border border-slate-600">
+                            <BadgeIcon iconName={b?.icon || 'Award'} className="text-yellow-400 w-6 h-6" />
+                          </div>
+                          <div>
+                            <h4 className="font-bold text-white text-md">{b?.name}</h4>
+                            <p className="text-slate-300 text-sm mt-1 leading-snug">{b?.description}</p>
+                          </div>
+                        </div>
+                      )
+                   })}
+                   {gameState.unlockedBadges.length === 0 && (
+                     <div className="bg-slate-800/50 p-6 rounded-xl border border-dashed border-slate-600 text-slate-400 italic text-center">
+                       No specific badges earned this term. Try focusing on extreme metrics next time (like 80+ Stability)!
+                     </div>
+                   )}
+                </div>
+              </div>
+
+              <div className="bg-blue-900/20 border border-blue-500/20 rounded-xl p-5 mb-8 text-left">
+                <p className="text-blue-100 text-sm leading-relaxed">
+                  <span className="font-bold block mb-1 text-blue-300">💡 Curator's Note:</span> 
+                  Internet governance is about balancing trade-offs. A stable internet might be restrictive; an open one might be chaotic. 
+                  Play again to explore how different philosophies—like prioritizing <strong>Innovation</strong> over <strong>Security</strong>—reshape the digital world.
+                </p>
               </div>
 
               <button 
                 onClick={resetGame}
-                className="flex items-center justify-center space-x-2 mx-auto bg-blue-600 hover:bg-blue-500 text-white px-6 py-3 rounded-lg font-semibold transition-colors"
+                className="w-full sm:w-auto flex items-center justify-center space-x-2 mx-auto bg-blue-600 hover:bg-blue-500 text-white px-8 py-4 rounded-full font-bold shadow-lg shadow-blue-500/25 transition-all hover:scale-105 active:scale-95"
               >
-                <RotateCcw size={18} />
-                <span>Play Again</span>
+                <RotateCcw size={20} />
+                <span>Start New Simulation</span>
               </button>
             </div>
           ) : currentScenario ? (
