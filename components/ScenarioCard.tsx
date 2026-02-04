@@ -19,7 +19,7 @@ const OrgIcon = ({ org }: { org: string }) => {
 
 export const ScenarioCard: React.FC<ScenarioCardProps> = ({ scenario, onOptionSelect }) => {
   return (
-    <div className="flex flex-col h-full animate-in fade-in slide-in-from-bottom-4 duration-500">
+    <div className="flex flex-col animate-in fade-in slide-in-from-bottom-4 duration-500">
       
       {/* Context Header */}
       <div className="bg-slate-800 border-l-4 border-l-blue-500 border border-slate-700 rounded-r-lg p-6 mb-6 shadow-lg">
@@ -40,7 +40,7 @@ export const ScenarioCard: React.FC<ScenarioCardProps> = ({ scenario, onOptionSe
       </div>
 
       {/* Decision Matrix */}
-      <div className="grid grid-cols-1 gap-4 mt-auto">
+      <div className="grid grid-cols-1 gap-4">
         {scenario.options.map((option) => (
           <button
             key={option.id}
