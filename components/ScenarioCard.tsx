@@ -34,7 +34,7 @@ export const ScenarioCard: React.FC<ScenarioCardProps> = ({ scenario, onOptionSe
             <OrgIcon org={scenario.orgContext} />
           </div>
         </div>
-        <p className="text-lg text-slate-300 leading-relaxed">
+        <p className="text-lg text-slate-200 leading-relaxed">
           {scenario.description}
         </p>
       </div>
@@ -51,15 +51,15 @@ export const ScenarioCard: React.FC<ScenarioCardProps> = ({ scenario, onOptionSe
               <h3 className="text-lg font-semibold text-white group-hover:text-blue-300 transition-colors">
                 {option.text}
               </h3>
-              <p className="text-sm text-slate-400 mt-1">
+              <p className="text-sm text-slate-300 mt-1">
                 {option.description}
               </p>
             </div>
             
             {/* Projected Impact Hints (Subtle) */}
-            <div className="hidden md:flex flex-col gap-1 ml-4 opacity-50 group-hover:opacity-100 transition-opacity">
+            <div className="hidden md:flex flex-col gap-1 ml-4 opacity-70 group-hover:opacity-100 transition-opacity">
                {option.impacts.map((imp, idx) => (
-                 <span key={idx} className={`text-[10px] px-2 py-0.5 rounded uppercase font-mono ${imp.value > 0 ? 'bg-green-900/50 text-green-400' : 'bg-red-900/50 text-red-400'}`}>
+                 <span key={idx} className={`text-[10px] px-2 py-0.5 rounded uppercase font-mono ${imp.value > 0 ? 'bg-green-900/60 text-green-300' : 'bg-red-900/60 text-red-300'}`}>
                    {imp.metric.slice(0,4)} {imp.value > 0 ? '++' : '--'}
                  </span>
                ))}

@@ -24,7 +24,7 @@ export const MetricDisplay: React.FC<MetricDisplayProps> = ({ metrics }) => {
 
   return (
     <div className="bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-lg p-4 shadow-xl">
-      <h3 className="text-xs uppercase tracking-widest text-slate-400 mb-3 font-semibold">Global Health Indices</h3>
+      <h3 className="text-xs uppercase tracking-widest text-slate-300 mb-3 font-semibold">Global Health Indices</h3>
       
       {/* Mobile/Compact View: 2-Column Grid */}
       <div className="grid grid-cols-2 gap-3 md:hidden">
@@ -35,8 +35,8 @@ export const MetricDisplay: React.FC<MetricDisplayProps> = ({ metrics }) => {
             </div>
             <div className="flex-1 min-w-0">
               <div className="flex justify-between text-xs mb-1">
-                <span className="text-slate-300 truncate mr-1">{item.config.label}</span>
-                <span className="font-mono">{item.value}%</span>
+                <span className="text-slate-200 truncate mr-1">{item.config.label}</span>
+                <span className="font-mono text-slate-100">{item.value}%</span>
               </div>
               <div className="h-1.5 w-full bg-slate-700 rounded-full overflow-hidden">
                 <div 
@@ -58,7 +58,7 @@ export const MetricDisplay: React.FC<MetricDisplayProps> = ({ metrics }) => {
               type="category" 
               dataKey="name" 
               tickFormatter={(val) => METRIC_CONFIG[val as MetricType].label}
-              tick={{ fill: '#94a3b8', fontSize: 12 }}
+              tick={{ fill: '#cbd5e1', fontSize: 12 }} 
               width={80}
             />
             <Bar dataKey="value" barSize={12} radius={[0, 4, 4, 0]} background={{ fill: '#1e293b' }}>

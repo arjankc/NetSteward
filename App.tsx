@@ -181,22 +181,22 @@ const App: React.FC = () => {
             </div>
           </div>
           <h1 className="text-4xl font-bold text-white mb-4">NetSteward</h1>
-          <p className="text-xl text-slate-300 mb-8">
+          <p className="text-xl text-slate-200 mb-8">
             The year is 2027. You have been appointed as the Global Internet Steward.
             Your job is to coordinate the technical, regional, and political layers of the internet.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8 text-left">
             <div className="bg-slate-700/50 p-4 rounded-lg">
               <h3 className="font-bold text-white mb-2">Maintain Stability</h3>
-              <p className="text-sm text-slate-400">Keep the DNS and routing infrastructure functional.</p>
+              <p className="text-sm text-slate-300">Keep the DNS and routing infrastructure functional.</p>
             </div>
             <div className="bg-slate-700/50 p-4 rounded-lg">
               <h3 className="font-bold text-white mb-2">Ensure Equity</h3>
-              <p className="text-sm text-slate-400">Ensure developing nations aren't left behind.</p>
+              <p className="text-sm text-slate-300">Ensure developing nations aren't left behind.</p>
             </div>
             <div className="bg-slate-700/50 p-4 rounded-lg">
               <h3 className="font-bold text-white mb-2">Navigate Politics</h3>
-              <p className="text-sm text-slate-400">Balance government demands with a free internet.</p>
+              <p className="text-sm text-slate-300">Balance government demands with a free internet.</p>
             </div>
           </div>
           <button 
@@ -221,7 +221,7 @@ const App: React.FC = () => {
             <span className="font-bold text-lg tracking-tight">NetSteward</span>
           </div>
           <div className="flex items-center space-x-4">
-            <div className="text-xs font-mono text-slate-400">
+            <div className="text-xs font-mono text-slate-300">
               TURN {gameState.turn}/{gameState.maxTurns}
             </div>
             <div className="h-4 w-px bg-slate-700"></div>
@@ -245,7 +245,7 @@ const App: React.FC = () => {
           {/* Mobile Log Toggle */}
           <button 
             onClick={() => setShowMobileLog(!showMobileLog)}
-            className="lg:hidden flex items-center justify-center space-x-2 w-full py-2 bg-slate-800 border border-slate-700 rounded-lg text-slate-400 hover:text-slate-200 transition-colors"
+            className="lg:hidden flex items-center justify-center space-x-2 w-full py-2 bg-slate-800 border border-slate-700 rounded-lg text-slate-300 hover:text-slate-200 transition-colors"
           >
             <History size={16} />
             <span>{showMobileLog ? 'Hide History' : 'Show History'}</span>
@@ -254,15 +254,15 @@ const App: React.FC = () => {
 
           {/* Log Container */}
           <div className={`${showMobileLog ? 'block' : 'hidden'} lg:block bg-slate-800/50 border border-slate-700 rounded-lg p-4 max-h-[300px] overflow-y-auto scrollbar-hide`}>
-             <h3 className="text-xs uppercase tracking-widest text-slate-400 mb-3 font-semibold sticky top-0 bg-slate-800 pb-2 border-b border-slate-700/50">Log</h3>
+             <h3 className="text-xs uppercase tracking-widest text-slate-300 mb-3 font-semibold sticky top-0 bg-slate-800 pb-2 border-b border-slate-700/50">Log</h3>
              <div className="space-y-3">
                 {gameState.history.slice().reverse().map((entry, i) => (
                   <div key={i} className="text-sm border-l-2 border-slate-600 pl-3 py-1">
                     <div className="font-semibold text-slate-200">{entry.title}</div>
-                    <div className="text-slate-400 text-xs italic">"{entry.outcome}"</div>
+                    <div className="text-slate-300 text-xs italic">"{entry.outcome}"</div>
                   </div>
                 ))}
-                {gameState.history.length === 0 && <span className="text-slate-500 text-sm">System initialized...</span>}
+                {gameState.history.length === 0 && <span className="text-slate-400 text-sm">System initialized...</span>}
              </div>
           </div>
         </div>
@@ -283,7 +283,7 @@ const App: React.FC = () => {
                  )}
               </div>
               <h2 className="text-3xl font-bold text-white mb-2">Simulation Ended</h2>
-              <p className="text-slate-300 text-lg mb-8 max-w-lg mx-auto leading-relaxed">{gameState.gameOverReason}</p>
+              <p className="text-slate-200 text-lg mb-8 max-w-lg mx-auto leading-relaxed">{gameState.gameOverReason}</p>
               
               <div className="mb-8">
                 <h3 className="text-xl font-bold text-white mb-4 flex items-center justify-center gap-2">
@@ -299,7 +299,7 @@ const App: React.FC = () => {
                           </div>
                           <div>
                             <h4 className="font-bold text-white text-md">{b?.name}</h4>
-                            <p className="text-slate-300 text-sm mt-1 leading-snug">{b?.description}</p>
+                            <p className="text-slate-200 text-sm mt-1 leading-snug">{b?.description}</p>
                           </div>
                         </div>
                       )
@@ -346,12 +346,12 @@ const App: React.FC = () => {
         <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
           <div className="bg-slate-800 border border-slate-600 w-full max-w-lg rounded-xl shadow-2xl p-6 transform transition-all animate-in scale-95 overflow-y-auto max-h-[90vh]">
             <h3 className="text-xl font-bold text-white mb-2">{feedback.title}</h3>
-            <p className="text-slate-300 mb-6 leading-relaxed">{feedback.text}</p>
+            <p className="text-slate-200 mb-6 leading-relaxed">{feedback.text}</p>
             
             <div className="bg-slate-900/50 rounded p-4 mb-6 grid grid-cols-2 gap-3">
               {feedback.impacts.map((imp, idx) => (
                 <div key={idx} className="flex items-center justify-between text-sm bg-slate-800/50 p-2 rounded">
-                  <span className="capitalize text-slate-400">{imp.metric}</span>
+                  <span className="capitalize text-slate-300">{imp.metric}</span>
                   <span className={`font-mono font-bold ${imp.value > 0 ? 'text-green-400' : 'text-red-400'}`}>
                     {imp.value > 0 ? '+' : ''}{imp.value}
                   </span>
